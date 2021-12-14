@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './',
+    publicPath: path.resolve(__dirname, '/'),
   },
   resolve: {
     extensions: ['.ts', 'tsx', '.js'],
@@ -28,6 +28,9 @@ module.exports = {
   //这个参数就可以在webpack中获取到了
   devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
   devServer: {
+    // static: { // static: ['assets']
+    //     publicPath:  path.resolve(__dirname, '/'),
+	// },
     //不启动压缩
     compress: false,
     host: 'localhost',
@@ -39,7 +42,7 @@ module.exports = {
       cleanOnceBeforeBuildPatterns: [path.join(__dirname, 'dist/**/*')],
     }),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: 'index.html',
     }),
   ],
 };
